@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+
+# Logs
+*.log
+npm-debug.log*
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+
+# Environment
+.env
+.env.*
+
+# Coverage
+coverage
+
+# Tests
+tests
+
+# Documentation
+README.md
+
+# Docker compose
+docker-compose.yml
+docker-compose.dev.yml

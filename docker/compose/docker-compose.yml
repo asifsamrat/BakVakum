@@ -1,0 +1,92 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: ../../web
+      dockerfile: Dockerfile
+
+    image: bakvakum-web:latest
+
+    container_name: bakvakum-web
+
+    restart: always
+
+    ports:
+      - "80:80"
+
+    depends_on:
+      - backend
+
+    networks:
+      - bakvakum-network
+
+  backend:
+    build:
+      context: ../../backend
+      dockerfile: Dockerfile
+
+    image: bakvakum-backend:latest
+
+    container_name: bakvakum-backend
+
+    restart: always
+
+    env_file:
+      - ../env/production.env
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+      redis:
+        condition: service_started
+
+    networks:
+      - bakvakum-network
+
+  postgres:
+    image: postgres:17-alpine
+
+    container_name: bakvakum-postgres
+
+    restart: always
+
+    env_file:
+      - ../env/production.env
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - bakvakum-network
+
+  redis:
+    image: redis:8-alpine
+
+    container_name: bakvakum-redis
+
+    restart: always
+
+    command: redis-server
+
+    volumes:
+      - redis_data:/data
+
+    networks:
+      - bakvakum-network
+
+volumes:
+  postgres_data:
+
+  redis_data:
+
+networks:
+  bakvakum-network:
+    driver: bridge

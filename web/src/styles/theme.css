@@ -1,0 +1,20 @@
+/* | Variable                 | Color             |
+| ------------------------ | ----------------- |
+| `--color-primary`        | Brand color       |
+| `--color-primary-hover`  | Hover state       |
+| `--color-secondary`      | Secondary actions |
+| `--color-background`     | Page background   |
+| `--color-surface`        | Cards, modals     |
+| `--color-text`           | Main text         |
+| `--color-text-secondary` | Muted text        |
+| `--color-border`         | Borders           |
+| `--color-success`        | Success messages  |
+| `--color-warning`        | Warnings          |
+| `--color-error`          | Errors            |
+| `--color-info`           | Informational UI  | */
+
+:root{
+    --color-primary: #097b09f7;
+    --color-background: #ffffff;
+    --color-text: #000000;
+}
