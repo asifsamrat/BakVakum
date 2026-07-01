@@ -1,10 +1,15 @@
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import FullScreenLoader from './components/FullScreenLoader';
+import ErrorBoundary from './components/ErrorBoundary';
+import ErrorTest from './test/ErrorTest';
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[var(--color-background)] text-[var(--color-text)]">
-      <h1 className="text-5xl font-bold text-[var(--color-primary)]">
-        Tailwind CSS is Working 🚀
-      </h1>
-    </div>
+    <ErrorBoundary>
+      <ErrorTest/>
+    </ErrorBoundary>
   );
 }
 
